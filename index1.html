@@ -20,7 +20,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Agenda</a>
+      <a class="navbar-brand" href="index1.html">Agenda</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -36,12 +36,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/"
+            <a class="nav-link" href="index1.html"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./backoffice1.html">Backoffice</a>
+            <a class="nav-link" href="backoffice1.html">Backoffice</a>
           </li>
         </ul>
       </div>
@@ -88,7 +88,7 @@
           if (events.length > 0) {
             events.forEach((e) => {
               let event = document.createElement("div");
-              event.innerHTML = `<a href="detail.html?id=${e._id}">${e.time}: ${e.name}</a>`;
+              event.innerHTML = `<a href="detail1.html?id=${e._id}">${e.time}: ${e.name}</a>`;
               eventsDiv.appendChild(event);
             });
           } else {

@@ -136,61 +136,26 @@
               </form>
             </div>
           </nav>
-          <div class="container" style="min-height: 10vh;">
-              <h2>Da Modificare!!!!</h2>
+          <div class="container" id ="audioAndSubtitles"style="min-height: 10vh;">
+              <h2 class="select">Audio and Subtitles</h2>
+              <div class="select mx-5" style="width:200px;">
+                <select>
+                  <option value="0">Audio</option>
+                </select>
+              </div>
+              <div class="select mx-5" style="width:200px;">
+                <select>
+                  <option value="0">English</option>
+                </select>
+              </div>
           </div>
-          <div class="container">
+          <div class="container filmContainer">
             <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
+              <div class="col appendFilm">
+              </div>             
             </div>
           </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-            </div>
-          </div>
+          
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script 
@@ -210,9 +175,27 @@
     </script>
     <script src="./javascript.js"></script>
     <script>
-      window.onload = () => {
-        getFilms()     
-      }
+      window.onload = async () => {
+        let appendFilm = document.querySelector(".appendFilm");
+        try {
+          let films = await getFilms();
+
+          console.log("FILM FETCHED", films);
+
+          if (films.length > 0) {
+            films.forEach((e) => {
+              let film = document.createElement("div");
+              film.innerHTML = `<a href="detail.html?id=${e._id}">${e.name}</a>`;
+              appendFilm.appendChild(film);
+            });
+          } else {
+            appendFilm.innerHTML = "<h1>No planned events yet</h1>";
+          }
+        } catch (err) {
+          console.log("err", err);
+          alert(err);
+        }
+      };
     </script>
   </body>
 </html>

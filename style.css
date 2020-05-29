@@ -19,3 +19,23 @@ body{
 #navbarImageLogo{
     max-width: 200px;
 }
+
+#audioAndSubtitles{
+    margin: 5vh;
+    padding: 0;
+    
+}
+
+.select{
+    display: inline-block
+}
+
+select{
+    background-color: rgb(33, 31, 32);
+    color: white;
+
+}
+
+.filmContainer{
+    margin: 5vh;
+}

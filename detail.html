@@ -68,28 +68,28 @@
       />
     </div>
 
-    <script src="./helper.js"></script>
+    <script src="./javascript.js"></script>
     <script>
       let id;
 
       window.onload = async () => {
         let urlParams = new URLSearchParams(window.location.search);
         id = urlParams.get("id");
-        console.log("ID OF THE EVENT IS", id);
-        let event = await getEvent(id);
-        console.log("EVENT DETAILS", event);
-        let detailsDiv = document.querySelector("#details");
-        detailsDiv.innerHTML = `${event.time} - ${event.name}`;
+        console.log("ID OF THE FILM IS", id);
+        let film = await getFilm(id);
+        console.log("FILM DETAILS", film);
+        let detailsFilm = document.querySelector("#details");
+        detailsFilm.innerHTML = `${film.name}`;
       };
 
       const handleDelete = async () => {
         // delete operation, I will need the id
-        const response = await deleteEvent(id);
+        const response = await deleteFilm(id);
         if (response.ok) {
-          alert("Event deleted successfully");
+          alert("Film deleted successfully");
           window.location.assign("index.html");
         } else {
-          alert("Event has NOT been deleted successfully");
+          alert("Film has NOT been deleted successfully");
         }
       };
 

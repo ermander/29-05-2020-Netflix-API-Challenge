@@ -1,9 +1,9 @@
-let url = "https://striveschool.herokuapp.com/api/product/"
+let url = "https://striveschool.herokuapp.com/api/movies/"
 let authToken = btoa("user8:eAqd2ZPk3Rbtm8Mw")
 
 
 const getFilms = async () => { 
-    let response = await fetch(url, {
+    let response = await fetch(url , {
     method: "GET",
     headers: {
     "Authorization": `Basic ${authToken}`
@@ -13,14 +13,19 @@ const getFilms = async () => {
 };
 
 const getFilm = async (id) => {
-  let response = await fetch(url + id);
+  let response = await fetch(url + id, {
+    method: "GET",
+    headers: {
+    "Authorization": `Basic ${authToken}`
+    }
+  });
   return await response.json();
 };
 
-const submitFilm = async (product) => {
+  let saveFilm = async (film) => {
     let response = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(product),
+      body: JSON.stringify(film),
       headers: new Headers({
         "Content-Type": "application/json",
         "Authorization": `Basic ${authToken}`
@@ -29,13 +34,24 @@ const submitFilm = async (product) => {
     return response;
   };
 
-  const editEvent = async (id, agendaEvent) => {
+  const editFilm = async (id, film) => {
     let response = await fetch(url + id, {
       method: "PUT",
-      body: JSON.stringify(agendaEvent),
+      body: JSON.stringify(film),
       headers: new Headers({
         "Content-Type": "application/json",
+        "Authorization": `Basic ${authToken}`
       }),
+    });
+    return response;
+  };
+
+  const deleteFilm = async (id) => {
+    let response = await fetch(url + id, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Basic ${authToken}`
+      }
     });
     return response;
   };

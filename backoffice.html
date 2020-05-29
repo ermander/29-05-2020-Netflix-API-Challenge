@@ -199,14 +199,40 @@
               </div>
             </div>
           </div>
-          <script src="./javascript.js"></script>
+          <script src="javascript.js"></script>
+          <script src="./detail.html"></script>
           <script>
-            handleSubmit = () => {
+
+            
+            let id;
+
+            window.onload = async () => {
+            let urlParams = new URLSearchParams(window.location.search);
+            id = urlParams.get("id");
+
+            if (id) {
+              console.log("ID IS PRESENT, FETCHING DETAILS", id);
+              let film = await getFilm(id);
+              console.log("EVENT DETAILS", film);
+              document.querySelector("#filmName").value = film.name;
+              document.querySelector("#filmDescription").value = film.description;
+              document.querySelector("#filmCategory").value = film.filmCategory;
+              document.querySelector("#imageUrl").value = film.imageUrl;
+            } else {
+              console.log("I WANT TO CREATE AN ELEMENT FROM SCRATCH");
+            }
+          };
+
+          
+          handleSubmit = () => {
               event.preventDefault();
               submitFilm();
             };
-      
+
             submitFilm = async () => {
+              let spinner = document.querySelector(".spinner-border");
+              spinner.classList.toggle("d-none");
+
               let film = {
                 name: document.querySelector("#filmName").value,
                 description: document.querySelector("#filmDescription").value,
@@ -214,13 +240,21 @@
                 imageUrl: document.querySelector("#imageUrl").value,
               };
               console.log("My Film", film);
-      
-              let response = await saveProduct(film);
+
+              let response;
+
+              if (id) {
+                response = await editFilm(id, film);
+              } else {
+                response = await saveFilm(film);
+              }
+
               console.log("RESPONSE FROM THE saveFilm", response);
               if (response.ok) {
-                alert("Event created successfully");
+                spinner.classList.toggle("d-none");
                 location.assign("index.html");
               } else {
+                spinner.classList.toggle("d-none");
                 alert("Film NOT created succesfully");
               }
             };
