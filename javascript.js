@@ -9,8 +9,12 @@ const getFilms = async () => {
     "Authorization": `Basic ${authToken}`
     }
     })
-    let parsedResponse = await response.json()
-    console.log(parsedResponse)
+    return await response.json()    
+};
+
+const getFilm = async (id) => {
+  let response = await fetch(url + id);
+  return await response.json();
 };
 
 const submitFilm = async (product) => {
@@ -20,6 +24,17 @@ const submitFilm = async (product) => {
       headers: new Headers({
         "Content-Type": "application/json",
         "Authorization": `Basic ${authToken}`
+      }),
+    });
+    return response;
+  };
+
+  const editEvent = async (id, agendaEvent) => {
+    let response = await fetch(url + id, {
+      method: "PUT",
+      body: JSON.stringify(agendaEvent),
+      headers: new Headers({
+        "Content-Type": "application/json",
       }),
     });
     return response;
