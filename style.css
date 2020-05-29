@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(33, 31, 32);
+}
+
+.container{
+    color: white;
+}
+
+#formContainer{
+    background-color: rgb(33, 31, 32);
+}
+
+.navbar{
+    background-color: rgb(33, 31, 32);
+    color: white;
+
+}
+
+#navbarImageLogo{
+    max-width: 200px;
+}
