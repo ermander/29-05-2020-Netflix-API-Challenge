@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -87,7 +87,7 @@
         const response = await deleteFilm(id);
         if (response.ok) {
           alert("Film deleted successfully");
-          window.location.assign("index.html");
+          window.location.assign("./index.html");
         } else {
           alert("Film has NOT been deleted successfully");
         }

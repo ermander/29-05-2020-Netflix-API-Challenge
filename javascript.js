@@ -35,7 +35,7 @@ const getFilm = async (id) => {
   };
 
   const editFilm = async (id, film) => {
-    let response = await fetch(url + id, {
+    let response = await fetch("https://striveschool.herokuapp.com/api/movies/id/" + id, {
       method: "PUT",
       body: JSON.stringify(film),
       headers: new Headers({
@@ -47,7 +47,7 @@ const getFilm = async (id) => {
   };
 
   const deleteFilm = async (id) => {
-    let response = await fetch(url + id, {
+    let response = await fetch("https://striveschool.herokuapp.com/api/movies/id/" + id, {
       method: "DELETE",
       headers: {
         "Authorization": `Basic ${authToken}`
