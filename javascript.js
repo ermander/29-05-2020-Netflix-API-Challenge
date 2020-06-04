@@ -22,56 +22,38 @@ const getFilm = async (id) => {
   return await response.json();
 };
 
-  let saveFilm = async (film) => {
-    let response = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(film),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Authorization": `Basic ${authToken}`
-      }),
-    });
-    return response;
-  };
+const saveFilm = async (film) => {
+  let response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(film),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": `Basic ${authToken}`
+    }),
+  });
+  return response;
+};
 
-  const editFilm = async (id, film) => {
-    let response = await fetch("https://striveschool.herokuapp.com/api/movies/id/" + id, {
-      method: "PUT",
-      body: JSON.stringify(film),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Authorization": `Basic ${authToken}`
-      }),
-    });
-    return response;
-  };
+const editFilm = async (id, film) => {
+  let response = await fetch(url + id, {
+    method: "PUT",
+    body: JSON.stringify(film),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": `Basic ${authToken}`
+    }),
+  });
+  return response;
+};
 
-  const deleteFilm = async (id) => {
-    let response = await fetch("https://striveschool.herokuapp.com/api/movies/id/" + id, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Basic ${authToken}`
-      }
-    });
-    return response;
-  };
+const deleteFilm = async (id) => {
+  let response = await fetch(url + id, {
+    method: "DELETE",
+    headers:{
+      "Authorization": `Basic ${authToken}`
+    }
+ });
+ return response;
+}
 
-  /*
-  Animazione
-  Avventura
-  Biografico
-  Commedia
-  Documentario
-  Drammatico
-  Pornografico
-  Erotico
-  Fantascienza
-  Fantasy/Fantastico
-  Guerra
-  Horror
-  Musical
-  Storico
-  Thriller
-  Western
 
-*/
